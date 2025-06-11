@@ -13,7 +13,7 @@ const HeaderBar = () => {
     const fetchUserProfile = async () => {
       try {
         // Step 1: Get authenticated user via cookie
-        const meRes = await fetch("http://localhost:8080/me", {
+        const meRes = await fetch("https://ai-email-backend-ai-73581a558d17.herokuapp.com/me", {
           credentials: "include",
         });
 
@@ -25,7 +25,7 @@ const HeaderBar = () => {
         if (!meData.email) throw new Error("No authenticated email");
 
         // Step 2: Use email to get profile
-        const profileRes = await fetch(`http://localhost:8080/user-profile?email=${meData.email}`);
+        const profileRes = await fetch(`https://ai-email-backend-ai-73581a558d17.herokuapp.com/user-profile?email=${meData.email}`);
         const profileData = await profileRes.json();
 
         setProfile(profileData);
@@ -34,7 +34,7 @@ const HeaderBar = () => {
         message.error("Session expired. Logging out...");
 
         try {
-          await fetch("http://localhost:8080/logout", {
+          await fetch("https://ai-email-backend-ai-73581a558d17.herokuapp.com/logout", {
             method: "POST",
             credentials: "include",
           });
@@ -51,7 +51,7 @@ const HeaderBar = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:8080/logout", {
+      await fetch("https://ai-email-backend-ai-73581a558d17.herokuapp.com/logout", {
         method: "POST",
         credentials: "include",
       });

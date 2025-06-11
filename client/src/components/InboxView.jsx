@@ -29,7 +29,7 @@ const InboxView = () => {
   useEffect(() => {
     const fetchUserEmail = async () => {
       try {
-        const res = await fetch("http://localhost:8080/me", {
+        const res = await fetch("https://ai-email-backend-ai-73581a558d17.herokuapp.com/me", {
           credentials: "include",
         });
         const data = await res.json();
@@ -50,14 +50,14 @@ const InboxView = () => {
   const fetchSummarizedEmails = async (email) => {
     setLoading(true);
     try {
-      const readRes = await fetch("http://localhost:8080/gmail/read", {
+      const readRes = await fetch("https://ai-email-backend-ai-73581a558d17.herokuapp.com/gmail/read", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ email }),
       });
       const rawEmails = await readRes.json();
-      const sumRes = await fetch("http://localhost:8080/summarize-emails", {
+      const sumRes = await fetch("https://ai-email-backend-ai-73581a558d17.herokuapp.com/summarize-emails", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -87,7 +87,7 @@ const InboxView = () => {
     setActiveEmail(email);
     setModalOpen(true);
     try {
-      const res = await fetch("http://localhost:8080/suggest-reply", {
+      const res = await fetch("https://ai-email-backend-ai-73581a558d17.herokuapp.com/suggest-reply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -120,7 +120,7 @@ const InboxView = () => {
         threadId: activeEmail.threadId,
         email: userEmail,
       };
-      const res = await fetch("http://localhost:8080/send-email", {
+      const res = await fetch("https://ai-email-backend-ai-73581a558d17.herokuapp.com/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

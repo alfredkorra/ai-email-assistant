@@ -10,7 +10,7 @@ const App = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await fetch("http://localhost:8080/me", {
+        const res = await fetch("https://ai-email-backend-ai-73581a558d17.herokuapp.com/me", {
           credentials: "include",
         });
         setIsAuthenticated(res.ok);
