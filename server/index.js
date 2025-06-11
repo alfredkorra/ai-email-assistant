@@ -18,7 +18,7 @@ const app = express();
 
 
 const corsOptions = {
-  origin: "http://localhost:5173", // React app URL
+  origin: "https://your-frontend-url.vercel.app", // React app URL
   credentials: true,
 };
 
@@ -233,6 +233,7 @@ app.post("/send-email", async (req, res) => {
 });
 
 app.get("/me", async (req, res) => {
+  console.log("Cookie token:", token);
   const token = req.cookies.token;
   if (!token) return res.status(401).json({ error: "Missing token" });
 
