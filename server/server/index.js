@@ -18,7 +18,7 @@ const app = express();
 
 
 const corsOptions = {
-  origin: "https://ai-email-assistant-nu.vercel.app", // React app URL
+  origin: "https://ai-email-assistant-sigma.vercel.app/", // React app URL
   credentials: true,
 };
 
@@ -150,7 +150,7 @@ app.get("/auth/google/callback", async (req, res) => {
 
     // ✅ THIS IS THE ONLY THING YOU ADD:
     // res.redirect("https://ai-email-assistant-nu.vercel.app/inbox");
-    res.redirect(`https://ai-email-assistant-nu.vercel.app/inbox?token=${jwtToken}`);
+    res.redirect(`https://ai-email-assistant-sigma.vercel.app/inbox?token=${jwtToken}`);
     console.log(jwtToken, 'jwtToken jwtToken jwtToken')
 
   } catch (error) {
