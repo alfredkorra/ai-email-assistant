@@ -8,7 +8,7 @@ const { Title, Paragraph } = Typography;
 
 const LoginPage = () => {
   const handleLogin = () => {
-    window.location.href = "http://localhost:8080/auth/google";
+    window.location.href = "https://ai-email-backend-ai-73581a558d17.herokuapp.com/auth/google";
   };
 
   return (
