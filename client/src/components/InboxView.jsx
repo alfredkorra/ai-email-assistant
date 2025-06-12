@@ -26,45 +26,11 @@ const InboxView = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(10);
 
-  // useEffect(() => {
-  //   const fetchUserEmail = async () => {
-  //     try {
-  //       const res = await fetch("https://ai-email-backend-ai-73581a558d17.herokuapp.com/me", {
-  //         credentials: "include",
-  //       });
-  //       const data = await res.json();
-  //       if (data.email) setUserEmail(data.email);
-  //       else throw new Error("No email in response");
-  //     } catch (err) {
-  //       console.error("❌ Failed to get user", err);
-  //       message.error("Not authenticated. Please log in.");
-  //     }
-  //   };
-  //   fetchUserEmail();
-  // }, []);
-
-
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get("token");
-  
-    if (token) {
-      localStorage.setItem("authToken", token);
-      window.history.replaceState(null, null, window.location.pathname);
-    }
-  
-    const storedToken = localStorage.getItem("authToken");
-    if (!storedToken) {
-      message.error("Not authenticated. Please log in.");
-      return;
-    }
-  
     const fetchUserEmail = async () => {
       try {
         const res = await fetch("https://ai-email-backend-ai-73581a558d17.herokuapp.com/me", {
-          headers: {
-            Authorization: `Bearer ${storedToken}`,
-          }
+          credentials: "include",
         });
         const data = await res.json();
         if (data.email) setUserEmail(data.email);
@@ -74,10 +40,44 @@ const InboxView = () => {
         message.error("Not authenticated. Please log in.");
       }
     };
-  
     fetchUserEmail();
-  
   }, []);
+
+
+  // useEffect(() => {
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   const token = urlParams.get("token");
+  
+  //   if (token) {
+  //     localStorage.setItem("authToken", token);
+  //     window.history.replaceState(null, null, window.location.pathname);
+  //   }
+  
+  //   const storedToken = localStorage.getItem("authToken");
+  //   if (!storedToken) {
+  //     message.error("Not authenticated. Please log in.");
+  //     return;
+  //   }
+  
+  //   const fetchUserEmail = async () => {
+  //     try {
+  //       const res = await fetch("https://ai-email-backend-ai-73581a558d17.herokuapp.com/me", {
+  //         headers: {
+  //           Authorization: `Bearer ${storedToken}`,
+  //         }
+  //       });
+  //       const data = await res.json();
+  //       if (data.email) setUserEmail(data.email);
+  //       else throw new Error("No email in response");
+  //     } catch (err) {
+  //       console.error("❌ Failed to get user", err);
+  //       message.error("Not authenticated. Please log in.");
+  //     }
+  //   };
+  
+  //   fetchUserEmail();
+  
+  // }, []);
 
 
   useEffect(() => {
